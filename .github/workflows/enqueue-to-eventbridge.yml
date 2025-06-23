@@ -1,6 +1,12 @@
 name: Process Agent Work Orders
 
 on:
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: 'Issue number to process'
+        required: false
+        default: ''
   issues:
     types: [opened, edited, labeled]
 
@@ -8,8 +14,18 @@ jobs:
   process-work-order:
     runs-on: ubuntu-latest
     if: contains(github.event.issue.labels.*.name, 'Work') && github.event.issue.state == 'open'
+    permissions:
+      issues: write
+      contents: read
     
     steps:
+    - name: Debug Context
+      run: |
+        echo "Event: ${{ github.event_name }}"
+        echo "Issue state: ${{ github.event.issue.state }}"
+        echo "Labels: ${{ toJson(github.event.issue.labels.*.name) }}"
+        echo "Contains Work: ${{ contains(github.event.issue.labels.*.name, 'Work') }}"
+        
     - name: Extract Issue Data
       id: extract
       uses: actions/github-script@v6
