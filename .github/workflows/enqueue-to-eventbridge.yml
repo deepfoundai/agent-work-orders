@@ -173,7 +173,7 @@ EOF2
         # Send event to EventBridge
         aws events put-events \
           --entries "[{
-            \"Source\": \"github.issues\",
+            \"Source\": \"agent.github\",
             \"DetailType\": \"devops.request\",
             \"Detail\": \"$EVENT_DETAIL\"
           }]"
