@@ -148,11 +148,15 @@ jobs:
         EVENT_DETAIL=$(cat <<EOF2
         {
           "requestId": "$REQUEST_ID",
-          "action": "agentWork",
+          "action": "deploy_stack",
           "stage": "$STAGE",
           "requestedBy": "GitHubCI",
           "agent": "$AGENT",
-          "payload": {
+          "stackName": "jobs-api-stack",
+          "templatePath": "frontend/backend/jobs-api-template.yaml",
+          "parameters": {
+            "Stage": "$STAGE"
+          },          "payload": {
             "spec": "$SPEC_B64",
             "deadline": "$DEADLINE",
             "deps": "$DEPS_B64",
