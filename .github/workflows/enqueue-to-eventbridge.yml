@@ -119,4 +119,4 @@ jobs:
           echo "✅ Sent agent task to EventBridge:"
           echo "  Agent: $AGENT"
           echo "  Issue: #$ISSUE_NUMBER"
-          echo "  Title: $ISSUE_TITLE" 
+          echo "  Title: $ISSUE_TITLE" # Updated Mon Jun 23 19:21:56 EDT 2025
